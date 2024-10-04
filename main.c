@@ -327,7 +327,7 @@ void tri_par_date(struct dentaire p1[],int numbre_reser){
 }
 int main() {
     struct dentaire p1[100];
-    int choice1, choice7;
+    int choice1, choice7,choice5;
     int numbre_reser;
     do {
         afficher_menu();
@@ -359,7 +359,23 @@ int main() {
                 break;
 
             case 5:
-                // Sorting code here if needed
+                printf("\tles parametres de tri");
+                printf("1/.tri par nom ");
+                printf("2/.tri par statut ");
+                printf("3/.tri par date ");
+                printf("veuillez saier ton choice :");
+                scanf("%d",&choice5);
+                switch(choice5){
+                case 1 :
+                    tri_par_nom(p1,numbre_reser);
+                    break;
+                case 2 :
+                    tri_par_statut(p1,numbre_reser);
+                    break;
+                case 3 :
+                    tri_par_date(p1,numbre_reser);
+                    break;
+                }
                 break;
 
             case 6:
