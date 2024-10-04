@@ -230,18 +230,12 @@ void recherche_refer(struct dentaire p1[], int numbre_reser) {
         }
     }
 }
-
-// Helper function to convert age string to integer
-int convert_age(char age[]) {
-    return atoi(age);
-}
-
 void calculer_moyenne_age(struct dentaire p1[], int numbre_reser) {
     int total_age = 0;
     for (int i = 10; i < numbre_reser + 10; i++) {
-        total_age += convert_age(p1[i].age);
+        total_age += atoi(p1[i].age);
     }
-    float moyenne_age = total_age / (float)numbre_reser;
+    float moyenne_age = total_age;
     printf("La moyenne d'âge des patients ayant réservé est : %.2f ans.\n", moyenne_age);
 }
 
@@ -291,7 +285,46 @@ void afficher_statistiques_par_statut(struct dentaire p1[], int numbre_reser) {
     printf("Annulé : %d\n", annule);
     printf("Traité : %d\n", traite);
 }
-
+void tri_par_nom(struct dentaire p1[],int numbre_reser){
+    struct dentaire tmp;
+    for(int i=10;i<numbre_reser+10;i++){
+        for(int j=10;j<numbre_reser+10-i-10;j++){
+            if(strcmp(p1[j].nom,p1[j+1].nom)>0){
+                tmp=p1[j];
+                p1[j]=p1[j+1];
+                p1[j+1]=tmp;
+            }
+        }
+    }
+}
+void tri_par_statut(struct dentaire p1[],int numbre_reser){
+    struct dentaire tmp;
+    for(int i=10;i<numbre_reser+10;i++){
+        for(int j=10;j<numbre_reser+10-i-10;j++){
+            if(p1[j].statut>p1[j+1].statut){
+                tmp=p1[j];
+                p1[j]=p1[j+1];
+                p1[j+1]=tmp;
+            }
+        }
+    }
+}
+void tri_par_date(struct dentaire p1[],int numbre_reser){
+    struct dentaire tmp;
+    for(int i=10;i<numbre_reser+10;i++){
+        for(int j=10;j<numbre_reser+10;j++){
+            if(p1[j].date.annee>p1[j+1].date.annee){
+                if(p1[j].date.mois>p1[j+1].date.mois){
+                    if(p1[j].date.jour>p1[j+1].date.jour){
+                        tmp=p1[j];
+                        p1[j]=p1[j+1];
+                        p1[j+1]=tmp;
+                    }
+                }
+            }
+        }
+    }
+}
 int main() {
     struct dentaire p1[100];
     int choice1, choice7;
